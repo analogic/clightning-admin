@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Funds{% endblock %}
+
+{% block body %}
+
+    <a href="{{ path('address') }}" class="btn btn-primary">Get new address</a>
+    <br /><br />
+    <h2>Output funds</h2>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Transaction ID</th>
+            <th>Output</th>
+            <th>Value</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for funds in rpc.listFunds.outputs %}
+        <tr>
+            <td>{{ funds.txid }}</td>
+            <td>{{ funds.output }}</td>
+            <td>{{ funds.value|number_format }}</td>
+            <td>{{ funds.status }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Channel funds</h2>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Peer ID</th>
+            <th>Short channel ID</th>
+            <th>Available satoshis</th>
+            <th>Total satoshis</th>
+            <th>Funding TX ID</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for funds in rpc.listFunds.channels %}
+            <tr>
+                <td>{{ funds.peerId }}</td>
+                <td>{{ funds.shortChannelId }}</td>
+                <td>{{ funds.channelSat|number_format }}</td>
+                <td>{{ funds.channelTotalSat|number_format }}</td>
+                <td>{{ funds.fundingTxid }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

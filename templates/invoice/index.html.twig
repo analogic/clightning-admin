@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Invoices{% endblock %}
+
+{% block body %}
+    <a href="{{ path('invoice_new') }}" class="btn btn-primary">Create new invoice</a>
+    <br /><br />
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Status</th>
+            <th>Label</th>
+            <th>Description</th>
+            <th>Millisatoshi</th>
+            <th>Bolt11</th>
+            <th>Payment Hash</th>
+            <th>Expires At</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for invoice in rpc.listInvoices %}
+            <tr>
+                <td>
+                    <span style="font-weight: bold; color:
+                            {% if invoice.status == 'unpaid' %}
+                                red
+                            {% elseif invoice.status == 'paid' %}
+                                green
+                            {% else %}
+                                gray
+                            {% endif %}
+                            ">
+                    {{ invoice.status  }}
+                    </span>
+                </td>
+                <td>
+                    {{ invoice.label }}
+                </td>
+                <td>
+                    {{ invoice.description|truncate(50) }}
+                </td>
+                <td>
+                    {{ invoice.msatoshi|number_format }}
+                </td>
+                <td>
+                    <a href="https://chart.googleapis.com/chart?chs=400x400&cht=qr&chl={{ invoice.bolt11 }}&choe=UTF-8"><span class="oi oi-external-link"></span> QR code {{ invoice.bolt11|truncate(10) }}</a>
+                </td>
+                <td>
+                    <abbr title="{{ invoice.paymentHash }}">{{ invoice.paymentHash|truncate(10) }}</abbr>
+                </td>
+                <td>
+                    {{ invoice.expiresAt|date('Y-m-d H:i:s') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">
+                    <em>No invoice created yet</em>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

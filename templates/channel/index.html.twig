@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Channels{% endblock %}
+
+{% block body %}
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>source</th>
+            <th>destination</th>
+            <th>short ID</th>
+            <th>flags</th>
+            <th>active</th>
+            <th>public</th>
+            <th>satoshi</th>
+            <th>last update</th>
+            <th>base fee millisatoshi</th>
+            <th>fee per millionth</th>
+            <th>delay</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for channel in rpc.listChannels %}
+            <tr>
+                <td>
+                    <abbr title="{{channel.source}}">{{ channel.source|truncate(10) }}</abbr>
+                </td>
+                <td>
+                    <abbr title="{{channel.destination}}">{{ channel.destination|truncate(10) }}</abbr>
+                </td>
+                <td>
+                   {{ channel.shortChannelId }}
+                </td>
+                <td>
+                    {{ channel.flags }}
+                </td>
+                <td>
+                    {{ channel.active ? '✔' : '✕' }}
+                </td>
+                <td>
+                    {{ channel.public ? '✔' : '✕' }}
+                </td>
+                <td>
+                    {{ channel.satoshis|number_format }}
+                </td>
+                <td>
+                    {{ channel.lastUpdate|date('Y-m-d H:i:s') }}
+                </td>
+                <td>
+                    {{ channel.baseFeeMillisatoshi }}
+                </td>
+                <td>
+                    {{ channel.feePerMillionth }}
+                </td>
+                <td>
+                    {{ channel.delay }}
+                </td>
+                <td>
+                    <a class="btn btn-danger btn-sm" href="{{ path('close', {id: channel.destination}) }}" onclick="return confirm('Are you sure?')">close</a>
+                </td>
+            </tr>
+        {% else %}
+        <tr>
+            <td colspan="11">
+                <em>No channel created yet</em>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

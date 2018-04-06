@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" integrity="sha256-BJ/G+e+y7bQdrYkS2RBTyNfBHpA9IuGaPmf9htub5MQ=" crossorigin="anonymous" />
+
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="header">
+                <br /><br />
+            </div>
+            <div class="row">
+                <div class="sidebar col-md-2">
+                    <ul>
+                        <li><a href="{{ path('funds') }}" >Funds</a></li>
+                        <li><a href="{{ path('peer') }}" >Peers</a></li>
+                        <li><a href="{{ path('channel') }}" >Channels</a></li>
+                        <li><a href="{{ path('invoice') }}" >Invoices</a></li>
+                    </ul>
+                    <br />
+                    <ul>
+                        <li><a href="{{ path('info') }}" >Node info</a></li>
+                    </ul>
+                </div>
+                <div class="content col-md-9">
+
+                    <h1>{{ block('title') }}</h1>
+
+                    {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ label }}" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
+        </div>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
