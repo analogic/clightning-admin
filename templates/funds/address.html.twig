@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Get new address{% endblock %}
+
+{% block body %}
+    <a href="{{ path('address') }}" class="btn btn-primary">Get new address</a>
+    <br /><br />
+    <input type="text" class="form-control" readonly="readonly" value="{{ rpc.newaddr('bech32') }}" />
+{% endblock %}
