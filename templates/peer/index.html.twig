@@ -33,10 +33,10 @@
                     {{ peer.connected ? '✔' : '✕' }}
                 </td>
                 <td>
-                    <a class="btn btn-info btn-sm" href="{{ path('fund', {id: peer.id}) }}">Fund channel</a>
+                    <a class="btn btn-primary btn-sm" href="{{ path('fund', {id: peer.id}) }}">Fund channel</a>
 
                     {% if peer.channels %}
-                    <a class="btn btn-info btn-sm" href="#" onclick="toggledisplay('{{ peer.id }}-details');">Channel details</a>
+                    <a class="btn btn-light btn-sm" href="#" onclick="toggledisplay('{{ peer.id }}-details');">Channel details</a>
                     {% endif %}
                 </td>
             </tr>

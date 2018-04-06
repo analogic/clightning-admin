@@ -2,11 +2,7 @@
 
 namespace App\Controller;
 
-use App\Form\ChannelType;
-use App\Form\ConnectType;
 use App\Form\FundType;
-use App\Request\ChannelRequest;
-use App\Request\ConnectRequest;
 use App\Request\FundRequest;
 use CLightning\CLightning;
 use Symfony\Component\HttpFoundation\Request;

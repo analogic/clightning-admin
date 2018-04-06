@@ -13,7 +13,7 @@ class InvoiceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('milliSatoshi', NumberType::class, ['label' => 'Amount in millisatoshi (1satoshi = 1000msatoshi)'])
+            ->add('milliSatoshi', NumberType::class, ['label' => 'Amount in millisatoshi (1satoshi = 1000msatoshi)', 'attr' => ['autofocus' => 'autofocus']])
             ->add('label', TextType::class, ['label' => 'Label (unique identifier for invoice)'])
             ->add('description')
             ->add('expiry', NumberType::class, ['label' => 'Expiry (invoice expiration in seconds)'])

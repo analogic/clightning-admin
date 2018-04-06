@@ -13,7 +13,7 @@ class ConnectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id', TextType::class, ['label' => 'ID of node'])
+            ->add('id', TextType::class, ['label' => 'ID of node', 'attr' => ['autofocus' => 'autofocus']])
             ->add('host', TextType::class, ['label' => 'Connect to host[:port]'])
             ->add('Connect!', SubmitType::class)
         ;

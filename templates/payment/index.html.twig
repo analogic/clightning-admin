@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Payments{% endblock %}
+
+{% block body %}
+
+    <a href="{{ path('address') }}" class="btn btn-primary">Send new payment</a>
+    <br /><br />
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Amount (msatoshi)</th>
+            <th>Destination</th>
+            <th>Status</th>
+            <th>Fee</th>
+            <th>Created At</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for payment in rpc.listpayments %}
+        <tr>
+            <td>{{ payment.msatoshi|number_format }}</td>
+            <td>{{ payment.destination }}</td>
+            <td>{{ payment.status }}</td>
+            <td>{{ (payment.msatoshiSent - payment.msatoshi)|number_format }}</td>
+            <td>{{ payment.createdAt|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

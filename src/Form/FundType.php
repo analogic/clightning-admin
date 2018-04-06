@@ -13,7 +13,7 @@ class FundType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('satoshi', NumberType::class, ['label' => 'Amount in satoshi'])
+            ->add('satoshi', NumberType::class, ['label' => 'Amount in satoshi', 'attr' => ['autofocus' => 'autofocus']])
             ->add('Fund!', SubmitType::class)
         ;
     }

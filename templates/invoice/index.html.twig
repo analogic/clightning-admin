@@ -44,7 +44,7 @@
                     {{ invoice.msatoshi|number_format }}
                 </td>
                 <td>
-                    <a href="https://chart.googleapis.com/chart?chs=400x400&cht=qr&chl={{ invoice.bolt11 }}&choe=UTF-8"><span class="oi oi-external-link"></span> QR code {{ invoice.bolt11|truncate(10) }}</a>
+                    <a href="#" style="color: black;" data-bolt="{{ invoice.bolt11 }}" class="bolt">{% include 'invoice/qr.svg.twig' %} show</a>
                 </td>
                 <td>
                     <abbr title="{{ invoice.paymentHash }}">{{ invoice.paymentHash|truncate(10) }}</abbr>
@@ -62,4 +62,31 @@
         {% endfor %}
         </tbody>
     </table>
+
+
+    <div class="modal" id="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <img src="https://chart.googleapis.com/chart?chs=465x465&cht=qr&chl=&choe=UTF-8" id="bolt-qr" />
+                    <textarea id="bolt-text" readonly="readonly" class="form-control" style="height: 8em;" onclick="this.select()"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+$('.bolt').on('click', function(t) {
+    var bolt = $(this).attr('data-bolt');
+    $('#bolt-qr').attr('src', 'https://chart.googleapis.com/chart?chs=465x465&cht=qr&chl=' + bolt + '&choe=UTF-8');
+    $('#bolt-text').html(bolt);
+    $('#modal').modal('show')
+});
+</script>
 {% endblock %}
