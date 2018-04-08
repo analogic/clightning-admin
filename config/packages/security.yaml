@@ -5,7 +5,7 @@ security:
             memory:
                 users:
                     admin:
-                        password: 'admin'
+                        password: '%env(PASSWORD)%'
                         roles: 'ROLE_USER'
 
     encoders:
