@@ -1,0 +1,31 @@
+version: '3'
+
+volumes:
+  network-data:
+
+services:
+
+  admin1:
+    build: .
+    ports:
+      - "5080:80"
+    volumes:
+      - network-data:/data
+    environment:
+      - CLIGHTNING_RPC_SOCKET=unix:///data/lightning-1/rpc
+      - PASSWORD=admin
+
+  admin2:
+    build: .
+    ports:
+      - "5081:80"
+    volumes:
+      - network-data:/data
+    environment:
+      - CLIGHTNING_RPC_SOCKET=unix:///data/lightning-2/rpc
+      - PASSWORD=admin
+
+  regnet:
+    image: analogic/clightning-regnet
+    volumes:
+      - network-data:/data

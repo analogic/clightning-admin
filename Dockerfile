@@ -6,6 +6,7 @@ ENV CLIGHTNING_RPC_SOCKET /root/.lightning/lightning-rpc
 ENV PASSWORD admin
 
 ADD . /var/www/
+ADD rootfs /
 
 RUN cd /var/www && \
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
