@@ -15,6 +15,7 @@ services:
     environment:
       - CLIGHTNING_RPC_SOCKET=unix:///data/lightning-1/rpc
       - PASSWORD=admin
+      - APP_ENV=dev
 
   admin2:
     build: .
@@ -26,6 +27,7 @@ services:
     environment:
       - CLIGHTNING_RPC_SOCKET=unix:///data/lightning-2/rpc
       - PASSWORD=admin
+      - APP_ENV=dev
 
   regnet:
     image: analogic/clightning-regnet

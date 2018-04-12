@@ -5,7 +5,8 @@
 #
 
 if [[ $CLIGHTNING_RPC_SOCKET != unix* ]]; then
-    echo "not unix socket type, continuing"
+    sleep 999;
+    s6-svc -d /var/run/s6/services/perms-fixer
     exit 0;
 fi
 
@@ -14,8 +15,6 @@ while [ 1 ]
 do
     if [ -S $SOCKET ]; then
         chmod 777 $SOCKET
-        exit 0;
     fi
-    echo "no socket visible at $SOCKET, sleeping"
     sleep 1
 done
