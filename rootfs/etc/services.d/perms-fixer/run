@@ -5,7 +5,6 @@
 #
 
 if [[ $CLIGHTNING_RPC_SOCKET != unix* ]]; then
-    sleep 999;
     s6-svc -d /var/run/s6/services/perms-fixer
     exit 0;
 fi
