@@ -18,20 +18,23 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th>Id</th>
             <th>Connected</th>
+            <th>ID</th>
+            <th>Alias</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
         {% for peer in rpc.listPeers %}
             <tr>
-                <td>
-                    {{ peer.id }}
-                </td>
+
                 <td>
                     {{ peer.connected ? '✔' : '✕' }}
                 </td>
+                <td>
+                    <abbr title="{{ peer.id }}">{{ peer.id|truncate(15) }}</abbr>
+                </td>
+                <th><span style="color: #{{ peer.color }}">{{ peer.alias }}</span></th>
                 <td>
                     <a class="btn btn-primary btn-sm" href="{{ path('fund', {id: peer.id}) }}">Fund channel</a>
 

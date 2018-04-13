@@ -46,7 +46,7 @@
                     {{ channel.satoshis|number_format }}
                 </td>
                 <td>
-                    {{ channel.lastUpdate|date('Y-m-d H:i:s') }}
+                    <abbr title="{{ channel.lastUpdate|date('Y-m-d H:i:s') }}">{{ channel.lastUpdate|time_diff }}</abbr>
                 </td>
                 <td>
                     {{ channel.baseFeeMillisatoshi }}

@@ -19,7 +19,7 @@
         <tbody>
         {% for funds in rpc.listFunds.outputs %}
         <tr>
-            <td>{{ funds.txid }}</td>
+            <td><abbr title="{{ funds.txid }}">{{ funds.txid|truncate(15) }}</abbr></td>
             <td>{{ funds.output }}</td>
             <td>{{ funds.value|number_format }}</td>
             <td>{{ funds.status }}</td>
@@ -43,11 +43,11 @@
         <tbody>
         {% for funds in rpc.listFunds.channels %}
             <tr>
-                <td>{{ funds.peerId }}</td>
+                <td><abbr title="{{ funds.peerId }}">{{ funds.peerId|truncate(15) }}</abbr></td>
                 <td>{{ funds.shortChannelId }}</td>
                 <td>{{ funds.channelSat|number_format }}</td>
                 <td>{{ funds.channelTotalSat|number_format }}</td>
-                <td>{{ funds.fundingTxid }}</td>
+                <td><abbr title="{{ funds.fundingTxid }}">{{ funds.fundingTxid|truncate(15) }}</abbr></td>
             </tr>
         {% endfor %}
         </tbody>

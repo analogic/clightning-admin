@@ -27,10 +27,23 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    App\DataCollector\CLightningLogger: ~
+
     CLightning\CLightning:
         arguments:
             $dsn: '%env(CLIGHTNING_RPC_SOCKET)%'
+            $logger: '@App\DataCollector\CLightningLogger'
 
     Nbobtc\Bitcoind\Client:
         arguments:
             $dsn: '%env(BITCOIND_RPC_DSN)%'
+
+    App\DataCollector\CLightningCollector:
+        arguments:
+            $logger: '@App\DataCollector\CLightningLogger'
+        tags:
+            -
+                name:     data_collector
+                template: 'profiler.html.twig'
+                id:       'app.clightning_collector'
+        public: false

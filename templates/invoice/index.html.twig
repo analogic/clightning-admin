@@ -11,11 +11,10 @@
         <tr>
             <th>Status</th>
             <th>Label</th>
-            <th>Description</th>
             <th>Millisatoshi</th>
             <th>Bolt11</th>
             <th>Payment Hash</th>
-            <th>Expires At</th>
+            <th>Expires</th>
         </tr>
         </thead>
         <tbody>
@@ -38,9 +37,6 @@
                     {{ invoice.label }}
                 </td>
                 <td>
-                    {{ invoice.description|truncate(50) }}
-                </td>
-                <td>
                     {{ invoice.msatoshi|number_format }}
                 </td>
                 <td>
@@ -50,7 +46,7 @@
                     <abbr title="{{ invoice.paymentHash }}">{{ invoice.paymentHash|truncate(10) }}</abbr>
                 </td>
                 <td>
-                    {{ invoice.expiresAt|date('Y-m-d H:i:s') }}
+                    <abbr title="{{ invoice.expiresAt|date('Y-m-d H:i:s') }}">{{ invoice.expiresAt|time_diff }}</abbr>
                 </td>
             </tr>
         {% else %}

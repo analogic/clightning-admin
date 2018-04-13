@@ -1,0 +1,54 @@
+{% extends '@WebProfiler/Profiler/layout.html.twig' %}
+
+{% block toolbar %}
+    {% set icon %}
+        <span style="color: #AAAAAA;"><span style="font-size: 200%; font-weight: bold; display: inline-block; vertical-align: middle">⚡</span>RPC</span>
+        <span class="sf-toolbar-value">{{ collector.count }}</span>
+
+    {% endset %}
+
+    {% set text %}
+        <div class="sf-toolbar-info-piece">
+            <b>JSON RPC requests</b> <span>{{ collector.count }}</span>
+        </div>
+    {% endset %}
+
+    {{ include('@WebProfiler/Profiler/toolbar_item.html.twig', { 'link': true }) }}
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block menu %}
+    {# This left-hand menu appears when using the full-screen profiler. #}
+    <span class="label">
+        <span class="icon"><span style="font-size: 180%">⚡</span></span>
+        <strong>C-Lightning RPC</strong>
+    </span>
+{% endblock %}
+
+{% block panel %}
+    {# Optional, for showing the most details. #}
+    <h2>C-Lightning RPC</h2>
+    <a href="#" onclick="document.getElementById('raw-rpc').style.display='table'">Display raw communication</a>
+    <table id="raw-rpc" style="display: none;">
+        {% for log in collector.log %}
+            <tr>
+                <td>{{ (log.direction == 'in' ? '&larr;' : '&rarr;')|raw }}</td>
+                <td>{{ log.message }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    {% for rr in collector.RRs %}
+        <h3>Request</h3>
+        {{ dump(rr[0]) }}
+
+        <h3>Response</h3>
+        {{ dump(rr[1]) }}
+    {% endfor %}
+    <script>
+        document.querySelectorAll('samp .sf-dump-toggle').forEach(function (i) { i.click(); });
+    </script>
+{% endblock %}

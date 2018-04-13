@@ -23,7 +23,7 @@ class BitcoindController extends Controller
     {
         return $this->render('bitcoind/balances.html.twig', [
             'balances' => (array) $c->execute('listaccounts')->result,
-            'transactions' => (array) $c->execute('listtransactions', ["", 35])->result,
+            'transactions' => (array) $c->execute('listtransactions', ["*", 35])->result,
         ]);
     }
 

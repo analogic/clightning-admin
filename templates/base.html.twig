@@ -7,6 +7,7 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="/js/NchanSubscriber.js" type="application/javascript"></script>
 
         <style>
             header { background-color: #17a2b8; color: white; margin-bottom: 1em;}
@@ -72,5 +73,37 @@
             </div>
         </div>
         {% block javascripts %}{% endblock %}
+
+        <!-- Modal -->
+        <div class="modal" id="invoiceNotice" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Incomming payment</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <pre id="noticeMessage"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            var sub = new NchanSubscriber('/_sub/invoices');
+            sub.on("message", function(message, message_metadata) {
+                console.log(message);
+                console.log(message_metadata);
+
+                message = JSON.stringify(JSON.parse(message),null,2);
+
+                $('#noticeMessage').text(message);
+
+                $('.modal').modal('hide');
+                $('#invoiceNotice').modal('show');
+            });
+            sub.start();
+        </script>
     </body>
 </html>

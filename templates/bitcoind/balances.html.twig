@@ -39,7 +39,7 @@
         <tbody>
         {% for transaction in transactions|reverse %}
             <tr>
-                <td>{{ transaction.time|date('Y-m-d H:i:s') }}</td>
+                <td><abbr title="{{ transaction.time|date('Y-m-d H:i:s') }}">{{ transaction.time|time_diff }}</abbr></td>
                 <td>{{ transaction.account|default('<em>(empty)</em>')|raw }}</td>
                 <td>{{ transaction.address }}</td>
                 <td>{{ transaction.amount|number_format(8) }}</td>
