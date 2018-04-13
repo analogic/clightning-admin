@@ -3,6 +3,7 @@ FROM analogic/sym4server
 ENV APP_ENV prod
 ENV APP_SECRET 6373e1ace63596295cf602efa7772996
 ENV CLIGHTNING_RPC_SOCKET /root/.lightning/lightning-rpc
+ENV BITCOIND_RPC_DSN http://bitcoinrpc:rpcpassword@regnet:18334
 ENV PASSWORD admin
 
 ADD . /var/www/

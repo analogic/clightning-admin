@@ -30,3 +30,7 @@ services:
     CLightning\CLightning:
         arguments:
             $dsn: '%env(CLIGHTNING_RPC_SOCKET)%'
+
+    Nbobtc\Bitcoind\Client:
+        arguments:
+            $dsn: '%env(BITCOIND_RPC_DSN)%'

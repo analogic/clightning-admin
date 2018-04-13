@@ -14,6 +14,7 @@ services:
       - .:/var/www
     environment:
       - CLIGHTNING_RPC_SOCKET=unix:///data/lightning-1/rpc
+      - BITCOIND_RPC_DSN=http://bitcoinrpc:rpcpassword@regnet:18332
       - PASSWORD=admin
       - APP_ENV=dev
 
@@ -26,6 +27,7 @@ services:
       - .:/var/www
     environment:
       - CLIGHTNING_RPC_SOCKET=unix:///data/lightning-2/rpc
+      - BITCOIND_RPC_DSN=http://bitcoinrpc:rpcpassword@regnet:18334
       - PASSWORD=admin
       - APP_ENV=dev
 

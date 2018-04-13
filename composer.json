@@ -23,7 +23,8 @@
         "symfony/twig-bundle": "^4.0",
         "symfony/validator": "^4.0",
         "symfony/yaml": "^4.0",
-        "twig/extensions": "^1.5"
+        "twig/extensions": "^1.5",
+        "nbobtc/bitcoind-php": "1.0.*@dev"
     },
     "require-dev": {
         "symfony/browser-kit": "^4.0",

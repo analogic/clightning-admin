@@ -41,6 +41,9 @@
     "monolog/monolog": {
         "version": "1.23.0"
     },
+    "nbobtc/bitcoind-php": {
+        "version": "1.0.0"
+    },
     "nikic/php-parser": {
         "version": "v4.0.1"
     },

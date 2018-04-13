@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New address{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+    {% if address %}
+        <hr />
+        <div class="form-group">
+            <label for="address" class="form-control-label">Address</label>
+            <input type="text" onclick="this.select()" readonly="readonly" class="form-control" value="{{ address }}">
+        </div>
+    {% endif %}
+{% endblock %}

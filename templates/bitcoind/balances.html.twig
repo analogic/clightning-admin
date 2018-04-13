@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bitcoind{% endblock %}
+
+{% block body %}
+    <a href="{{ path('bitcoind_address') }}" class="btn btn-primary">New address</a>
+    <a href="{{ path('bitcoind_pay') }}" class="btn btn-primary">Send payment</a>
+
+    <br /><br />
+    <h3>Balances</h3>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Account</th>
+            <th>Balance (BTC)</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for key, val in balances %}
+        <tr>
+            <td>{{ key|default('<em>(empty)</em>')|raw }}</td>
+            <td>{{ val }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <br />
+    <h3>Transactions</h3>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Time</th>
+            <th>Account</th>
+            <th>Address</th>
+            <th>Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for transaction in transactions|reverse %}
+            <tr>
+                <td>{{ transaction.time|date('Y-m-d H:i:s') }}</td>
+                <td>{{ transaction.account|default('<em>(empty)</em>')|raw }}</td>
+                <td>{{ transaction.address }}</td>
+                <td>{{ transaction.amount|number_format(8) }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
