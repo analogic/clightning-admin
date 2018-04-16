@@ -31,6 +31,8 @@ services:
         network=testnet
         alias=myawesomenode
         chain=btc
+    ports:
+      - "9735:9735"
     volumes:
       - "clightning_bitcoin_datadir:/root/.lightning"
       - "bitcoind_datadir:/data/bitcoind"
