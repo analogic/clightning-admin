@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Payment confirmation{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Payee</th>
+                <td>{{ data.payee }}</td>
+            </tr>
+            <tr>
+                <th>Satoshi</th>
+                <td><strong>{{ (data.msatoshi / 1000)|number_format(3) }}</strong></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td><strong>{{ data.description }}</strong></td>
+            </tr>
+            <tr>
+                <th>Created at</th>
+                <td>{{ data.timestamp|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Expiration</th>
+                <td>{{ (data.timestamp + data.expiry)|time_diff }}</td>
+            </tr>
+            <tr>
+                <th>Signature</th>
+                <td><abbr title="{{ data.signature }}">{{ data.signature|truncate(15) }}</abbr></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-secondary" href="{{ path('payment_new') }}">Edit payment</a>
+
+    <form action="{{ path('payment_pay') }}" method="post" style="display: inline;">
+        <input type="hidden" name="token" value="{{ csrf_token('confirm-payment') }}" />
+        <button type="submit" class="btn btn-info">Confirm and send!</button>
+    </form>
+{% endblock %}

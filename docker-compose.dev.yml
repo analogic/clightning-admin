@@ -17,6 +17,7 @@ services:
       - BITCOIND_RPC_DSN=http://bitcoinrpc:rpcpassword@regnet:18332
       - PASSWORD=admin
       - APP_ENV=dev
+      - SESSION_NAME=clightning1
 
   admin2:
     build: .
@@ -30,6 +31,7 @@ services:
       - BITCOIND_RPC_DSN=http://bitcoinrpc:rpcpassword@regnet:18334
       - PASSWORD=admin
       - APP_ENV=dev
+      - SESSION_NAME=clightning2
 
   regnet:
     image: analogic/clightning-regnet

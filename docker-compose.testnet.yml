@@ -1,0 +1,49 @@
+version: '3'
+
+volumes:
+  bitcoind_datadir:
+  clightning_bitcoin_datadir:
+
+services:
+
+  bitcoind:
+    image: nicolasdorier/docker-bitcoin:0.16.0
+    environment:
+      BITCOIN_EXTRA_ARGS: |
+        testnet=1
+        whitelist=0.0.0.0/0
+        rpcport=43782
+        server=1
+    volumes:
+    - "bitcoind_datadir:/data"
+
+  clightning_bitcoin:
+    image: nicolasdorier/clightning
+    environment:
+      EXPOSE_TCP: "true"
+      LIGHTNINGD_OPT: |
+        bitcoin-datadir=/data/bitcoind
+        bitcoin-rpcconnect=bitcoind
+        network=testnet
+        alias=myawesomenode
+        chain=btc
+    volumes:
+      - "clightning_bitcoin_datadir:/root/.lightning"
+      - "bitcoind_datadir:/data/bitcoind"
+    links:
+      - bitcoind
+
+  admin:
+    image: analogic/clightning-admin
+    ports:
+      - "5080:80"
+    environment:
+      - CLIGHTNING_RPC_SOCKET=tcp:///clightning_bitcoin:9835
+      - BITCOIND_RPC_DSN=http://bitcoind:43782
+      - PASSWORD=admin
+      - APP_ENV=dev
+      - SESSION_NAME=clightning1
+    links:
+      - bitcoind
+      - clightning_bitcoin
+

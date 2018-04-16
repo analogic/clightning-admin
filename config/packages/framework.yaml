@@ -9,6 +9,7 @@ framework:
     # Remove or comment this section to explicitly disable session support.
     session:
         handler_id: ~
+        name: '%env(SESSION_NAME)%'
 
     #esi: true
     #fragments: true
