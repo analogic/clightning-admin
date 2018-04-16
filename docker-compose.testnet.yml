@@ -17,7 +17,7 @@ services:
         rpcuser=bitcoinrpc
         rpcpassword=rpcpassword
     volumes:
-    - "bitcoind_datadir:/data"
+      - "bitcoind_datadir:/data"
 
   clightning_bitcoin:
     image: nicolasdorier/clightning
