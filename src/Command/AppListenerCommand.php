@@ -38,7 +38,6 @@ class AppListenerCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
-        $io->success('Listening!');
 
         $this->c->timeout = 3600;
         $last = null;
