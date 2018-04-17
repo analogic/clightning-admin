@@ -5,6 +5,7 @@ ENV APP_SECRET 6373e1ace63596295cf602efa7772996
 ENV CLIGHTNING_RPC_SOCKET unix:///root/.lightning/lightning-rpc
 ENV BITCOIND_RPC_DSN http://bitcoinrpc:rpcpassword@regnet:18334
 ENV PASSWORD admin
+ENV SESSION_NAME clightning
 
 ADD . /var/www/
 ADD rootfs /
