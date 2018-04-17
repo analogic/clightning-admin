@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/analogic/clightning.git",
-                "reference": "ddad2a2703db7d3a8c992d796d05c71bd36398d1"
+                "reference": "201453761bb05f583f6f7868234e9b8ed208a804"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/analogic/clightning/zipball/ddad2a2703db7d3a8c992d796d05c71bd36398d1",
-                "reference": "ddad2a2703db7d3a8c992d796d05c71bd36398d1",
+                "url": "https://api.github.com/repos/analogic/clightning/zipball/201453761bb05f583f6f7868234e9b8ed208a804",
+                "reference": "201453761bb05f583f6f7868234e9b8ed208a804",
                 "shasum": ""
             },
             "require": {
@@ -45,7 +45,7 @@
                 "source": "https://github.com/analogic/clightning/tree/master",
                 "issues": "https://github.com/analogic/clightning/issues"
             },
-            "time": "2018-04-13 09:12:14"
+            "time": "2018-04-16 08:48:40"
         },
         {
             "name": "dg/composer-cleaner",
