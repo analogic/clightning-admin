@@ -1,6 +1,8 @@
 C-Lightning admin
 =================
 
+![Administration screenshot](https://raw.githubusercontent.com/analogic/clightning-admin/master/clightning-admin.png)
+
 Simple web administrator for C-Lightning. Admin is meant to be run in docker with access to RPC socket. 
 
 Administration uses environment variables for initial settings:
