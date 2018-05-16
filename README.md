@@ -44,5 +44,13 @@ see *[docker-compose.mainnet.yml](https://github.com/analogic/clightning-admin/b
 ```
 $ wget https://raw.githubusercontent.com/analogic/clightning-admin/master/docker-compose.mainnet.yml
 ...
+edit these values
+ volumes > bitcoind_datadir: /data/bitcoind-data
+ volumes > clightning_bitcoin_datadir: /data/clightning-bitcoind-data
+ clightning_bitcoin > environment > LIGHTNINGD_OPT > alias=myawsomenode
+ admin > environment > PASSWORD=admin
+...
 $ docker-compose -f docker-compose.mainnet.yml up
+....
+open http://<your-server>:5080/ in your browser
 ```

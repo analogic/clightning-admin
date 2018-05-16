@@ -1,8 +1,8 @@
 version: '3'
 
 volumes:
-  bitcoind_datadir:
-  clightning_bitcoin_datadir:
+  bitcoind_datadir: /data/bitcoind-data
+  clightning_bitcoin_datadir: /data/clightning-bitcoind-data
 
 services:
 
